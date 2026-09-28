@@ -1,8 +1,9 @@
 ﻿using Práctica_Controller_Service_Repository.Entities;
+using Práctica_Controller_Service_Repository.Repositories.Interfaces;
 
 namespace Práctica_Controller_Service_Repository.Repositories.Implementations;
 
-public class ProductRepository
+public class ProductRepository : IProductRepository
 {
 
 

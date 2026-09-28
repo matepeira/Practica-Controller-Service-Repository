@@ -3,10 +3,11 @@ using Práctica_Controller_Service_Repository.Models.DTOs.Requests;
 using Práctica_Controller_Service_Repository.Models.DTOs.Responses;
 using Práctica_Controller_Service_Repository.Repositories.Implementations;
 using Práctica_Controller_Service_Repository.Repositories.Interfaces;
+using Práctica_Controller_Service_Repository.Services.Interfaces;
 using System.Xml.Linq;
 namespace Práctica_Controller_Service_Repository.Services.Implemetations;
 
-public class ProductService
+public class ProductService : IProductService
 {
     private ProductRepository _repository = new ProductRepository();
     public ProductService()
