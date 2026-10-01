@@ -21,23 +21,23 @@ public class ProductRepository : IProductRepository
     new Product { Id = 10, Name = "Impresora multifunción", Price = 73900.00m }
 };
 
- public List<Product> GetAllProducts()
+    public List<Product> GetAllProducts()
     {
         return _products;
     }
 
-public Product? GetProductById(int id)
+    public Product? GetProductById(int id)
     {
         return _products.Find(u => u.Id == id);
     }
 
-public void AddProduct(Product product)
+    public void AddProduct(Product product)
     {
         product.Id = _products.Count() + 1;
         _products.Add(product);
     }
 
-public void UpdateProduct(Product product)
+    public void UpdateProduct(Product product)
     {
         Product existingProduct = GetProductById(product.Id);
         if (existingProduct is not null)
@@ -47,8 +47,15 @@ public void UpdateProduct(Product product)
         }
     }
 
- public void DeleteProduct(Product product)
+    public void DeleteProduct(Product product)
     {
         _products.Remove(product);
+    }
+
+    public List<Product> SearchProductsByName(string name)
+    {
+        return _products
+            .Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase))
+            .ToList();
     }
 }

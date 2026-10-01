@@ -67,4 +67,21 @@ public class ProductsController : ControllerBase
         _service.DeleteProduct(id);
         return NoContent();
     }
+
+    [HttpGet("search")]
+
+    public IActionResult SearchProduct(string name)
+    {
+        var productList = _service.SearchProductsByName(name);
+        return Ok(productList);
+    }
+
+    [HttpGet("stats")]
+
+    public IActionResult GetStats()
+    {
+        var stats = _service.GetStats();
+        return Ok(stats);
+    }
+
 }

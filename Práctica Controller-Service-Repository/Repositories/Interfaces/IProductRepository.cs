@@ -9,5 +9,6 @@ namespace Práctica_Controller_Service_Repository.Repositories.Interfaces
         void AddProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
+        List<Product> SearchProductsByName(string name);
     }
 }
