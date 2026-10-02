@@ -36,6 +36,12 @@ public class ProductsController : ControllerBase
     public IActionResult CreateProduct(ProductForCreateDto dto)
     {
         var newProduct = _service.CreateProduct(dto);
+
+        if (newProduct is null)
+        {
+            return Conflict("Ya existe un producto con este nombre");
+        }
+
         return CreatedAtAction(nameof(GetById), new { id = newProduct.Id }, newProduct);
 
     }

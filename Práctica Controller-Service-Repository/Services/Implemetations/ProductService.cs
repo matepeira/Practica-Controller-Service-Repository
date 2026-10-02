@@ -52,9 +52,16 @@ public class ProductService : IProductService
                 });
     }
 
-    public ProductForReadDto CreateProduct(ProductForCreateDto dto)
+    public ProductForReadDto? CreateProduct(ProductForCreateDto dto)
     {
         var allProducts = _repository.GetAllProducts();
+        bool nameExists = allProducts.Any(p => p.Name.Equals(dto.Name, StringComparison.OrdinalIgnoreCase));
+
+        if (nameExists)
+        {
+            return null;
+        }
+        
         int newId = allProducts.Any() ? allProducts.Max(p => p.Id) + 1 : 1;
 
         var newProduct = new Product
@@ -64,7 +71,7 @@ public class ProductService : IProductService
             Price = dto.Price,
         };
 
-       _repository.AddProduct(newProduct);
+        _repository.AddProduct(newProduct);
 
         return new ProductForReadDto
         {
@@ -72,6 +79,7 @@ public class ProductService : IProductService
             Name = newProduct.Name,
             Price = newProduct.Price,
         };
+
     }
 
 
