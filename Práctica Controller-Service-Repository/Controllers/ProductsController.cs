@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Práctica_Controller_Service_Repository.Models.DTOs.Requests;
 using Práctica_Controller_Service_Repository.Models.DTOs.Responses;
+using Práctica_Controller_Service_Repository.Repositories.Interfaces;
 using Práctica_Controller_Service_Repository.Services.Implemetations;
+using Práctica_Controller_Service_Repository.Services.Interfaces;
 
 namespace Práctica_Controller_Service_Repository.Controllers;
 
@@ -10,7 +12,12 @@ namespace Práctica_Controller_Service_Repository.Controllers;
 [ApiController]
 public class ProductsController : ControllerBase
 {
-    private ProductService _service = new ProductService();
+    private IProductService _service;
+
+    public ProductsController(IProductService service)
+    {
+        _service = service;
+    }
 
     [HttpGet]
     public IActionResult GetAll()

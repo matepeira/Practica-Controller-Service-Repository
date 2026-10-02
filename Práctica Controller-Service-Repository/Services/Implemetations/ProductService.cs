@@ -9,12 +9,11 @@ namespace Práctica_Controller_Service_Repository.Services.Implemetations;
 
 public class ProductService : IProductService
 {
-    private ProductRepository _repository = new ProductRepository();
-    public ProductService()
+    private readonly IProductRepository _repository;
+    public ProductService(IProductRepository repository)
     {
-        _repository = new ProductRepository();
+        _repository = repository;
     }
-
     public List<ProductForReadDto> GetAllProducts()
     {
         var products = _repository.GetAllProducts();

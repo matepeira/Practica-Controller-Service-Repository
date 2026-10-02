@@ -1,4 +1,9 @@
 
+using Práctica_Controller_Service_Repository.Repositories.Implementations;
+using Práctica_Controller_Service_Repository.Repositories.Interfaces;
+using Práctica_Controller_Service_Repository.Services.Implemetations;
+using Práctica_Controller_Service_Repository.Services.Interfaces;
+
 namespace Práctica_Controller_Service_Repository
 {
     public class Program
@@ -12,6 +17,9 @@ namespace Práctica_Controller_Service_Repository
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 
