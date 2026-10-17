@@ -1,4 +1,5 @@
-
+using Microsoft.EntityFrameworkCore;
+using Práctica_Controller_Service_Repository.Data;
 using Práctica_Controller_Service_Repository.Repositories.Implementations;
 using Práctica_Controller_Service_Repository.Repositories.Interfaces;
 using Práctica_Controller_Service_Repository.Services.Implemetations;
@@ -17,10 +18,11 @@ namespace Práctica_Controller_Service_Repository
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IProductService, ProductService>();
-
+            builder.Services.AddDbContext<PracticeContext>(dbContextOptions =>
+                dbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:PracticeDBConnectionString"]));
+           
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
